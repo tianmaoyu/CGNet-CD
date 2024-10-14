@@ -13,6 +13,7 @@ class dice_bce_loss(nn.Module):
         self.bce_loss = nn.BCELoss()
 
     def soft_dice_coeff(self, y_true, y_pred):
+        # y_true 是一个 0,1 二值 张量，y_pred 是 0-1 之间的概率张量，最后输出一个一维数组均值
         smooth = 0.0  # may change
         if self.batch:
             i = torch.sum(y_true)

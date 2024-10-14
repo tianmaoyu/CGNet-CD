@@ -175,6 +175,7 @@ if __name__ == '__main__':
 
     train_loader = data_loader.get_loader(opt.train_root, opt.batchsize, opt.trainsize, num_workers=2, shuffle=True, pin_memory=True)
     val_loader = data_loader.get_test_loader(opt.val_root, opt.batchsize, opt.trainsize, num_workers=2, shuffle=False, pin_memory=True)
+    # 评估指标
     Eva_train = Evaluator(num_class = 2)
     Eva_val = Evaluator(num_class=2)
 

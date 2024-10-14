@@ -4,6 +4,7 @@ import numpy as np
 class Evaluator(object):
     def __init__(self, num_class):
         self.num_class = num_class
+        # 混淆矩阵
         self.confusion_matrix = np.zeros((self.num_class,)*2)
     
     def get_tp_fp_tn_fn(self):
