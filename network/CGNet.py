@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import models
 import matplotlib.pyplot as plt
+from  torchsummary import  summary
 
 class BasicConv2d(nn.Module):
     def __init__(self, in_planes, out_planes, kernel_size, stride=1, padding=0, dilation=1):
@@ -387,21 +388,11 @@ class CGNet_Ablation(nn.Module):
 
 if __name__=='__main__':
     #测试热图
-    # net=CGNet().cuda()
-    # out=net(torch.rand((2,3,256,256)).cuda(),torch.rand((2,3,256,256)).cuda())
+    net=CGNet()
+    # net = HCGMNet()
+    shape=(1,3,256,256)
+    out=net(torch.rand(shape),torch.rand(shape))
 
-    #测试模型大小
-    print('Hi~')
-    input_size = 256
-    model_restoration = HCGMNet()
-    # model_restoration = CGNet()
-    from ptflops import get_model_complexity_info
-    from torchstat import stat
+    summary(net,[(3, 256, 256),(3, 256, 256)])
 
-    # input = torch.rand((3, input_size, input_size))
-    # output = model_restoration(input)
-    macs, params = get_model_complexity_info(model_restoration, (3, input_size, input_size), as_strings=True,
-                                             print_per_layer_stat=True, verbose=True)
-    stat(model_restoration, (3, input_size, input_size))
-    print('{:<30}  {:<8}'.format('Computational complexity: ', macs))
-    print('{:<30}  {:<8}'.format('Number of parameters: ', params))
+
